@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func home(w http.ResponseWriter, r *http.Request) {
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
@@ -64,8 +64,6 @@ func notFoundDir(next http.Handler) http.Handler {
             http.NotFound(w, r)
             return
         }
-		http.DefaultServeMux.ServeHTTP()
-
         next.ServeHTTP(w, r)
     })
 
